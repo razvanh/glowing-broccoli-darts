@@ -1,21 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <div>
+            <header>
+                <h1>scorekeeper</h1>
+            </header>
+
+            <form>
+                <label htmlFor="new-score">
+                    Enter the name and score 'name, score'
+                </label>
+                <input
+                    id="new-score"
+                />
+                <button>
+                    Add to rankings
+                </button>
+                <button>
+                    Clear Rankings
+                </button>
+            </form>
+            <ScoreList/>
+
+        </div>
     );
   }
+}
+
+class ScoreList extends React.Component {
+    render() {
+        return (
+            <ol>
+                <li>Jollyby, 42 pts</li>
+                <li>Janet Pluchinsky, 30 pts</li>
+                <li>Alice Quinn, 27 pts</li>
+                <li>Julia Wicker, 27 pts</li>
+                <li>Eliot Waugh, 1 pt</li>
+                <li>Quentin Coldwater, 0 pts</li>
+            </ol>
+        );
+    }
 }
 
 export default App;
