@@ -10,12 +10,41 @@ class App extends Component {
             text:''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.clearRankings = this.clearRankings.bind(this);
     }
 
     handleChange(e){
         this.setState({text: e.target.value});
     }
 
+    handleSubmit(e){
+        e.preventDefault();
+        //@todo: validate the input
+        // don't do anything if there is no text in the input field
+        if (!this.state.text.length) {
+            return;
+        }
+
+        const scoreComponents = this.state.text.split(',');
+        const Score = {
+            id: Date.now(),
+            name: scoreComponents[0],
+            score: Number(scoreComponents[1]),
+        };
+
+        this.setState(prevState => ({
+            scores: prevState.scores.concat(Score),
+            text:''
+        }));
+    }
+
+    clearRankings(e){
+        e.preventDefault();
+        this.setState({
+            scores:[]
+        });
+    }
   render() {
     return (
         <div>
@@ -23,23 +52,25 @@ class App extends Component {
                 <h1>scorekeeper</h1>
             </header>
 
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label htmlFor="new-score">
                     Enter the name and score 'name, score'
                 </label>
                 <input
                     id="new-score"
                     onChange={this.handleChange}
+                    value = {this.state.text}
                 />
                 <button>
                     Add to rankings
                 </button>
+            </form>
+            <ScoreList/>
+            <form onSubmit={this.clearRankings}>
                 <button>
                     Clear Rankings
                 </button>
             </form>
-            <ScoreList/>
-
         </div>
     );
   }
