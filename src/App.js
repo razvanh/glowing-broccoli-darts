@@ -65,7 +65,7 @@ class App extends Component {
                     Add to rankings
                 </button>
             </form>
-            <ScoreList/>
+            <ScoreList scores={this.state.scores}/>
             <form onSubmit={this.clearRankings}>
                 <button>
                     Clear Rankings
@@ -80,12 +80,9 @@ class ScoreList extends React.Component {
     render() {
         return (
             <ol>
-                <li>Jollyby, 42 pts</li>
-                <li>Janet Pluchinsky, 30 pts</li>
-                <li>Alice Quinn, 27 pts</li>
-                <li>Julia Wicker, 27 pts</li>
-                <li>Eliot Waugh, 1 pt</li>
-                <li>Quentin Coldwater, 0 pts</li>
+                {this.props.scores.map(score => (
+                    <li key={score.id}>{score.name}, {score.score}</li>
+                ))}
             </ol>
         );
     }
