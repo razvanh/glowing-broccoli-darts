@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import './App.css';
+import logo from './logo.svg';
 
 class App extends Component {
 
@@ -59,10 +60,7 @@ class App extends Component {
   render() {
     return (
         <div>
-            <header>
-                <h1>scorekeeper</h1>
-            </header>
-
+            <Header />
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="new-score">
                     Enter the name and score 'name, score'
@@ -85,6 +83,16 @@ class App extends Component {
         </div>
     );
   }
+}
+
+class Header extends React.Component {
+    render(){
+        return(
+            <header>
+                <img src={logo} alt="scorekeeper"/>
+            </header>
+            );
+    };
 }
 
 class ScoreList extends React.Component {
