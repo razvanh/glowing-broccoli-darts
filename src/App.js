@@ -26,15 +26,26 @@ class App extends Component {
         if (!this.state.text.length) {
             return;
         }
-
-        const scoreComponents = this.state.text.split(',');
-        const Score = {
-            id: Date.now(),
-            name: scoreComponents[0],
-            score: Number(scoreComponents[1]),
-        };
+        let currentState = this.state;
+        const scoreComponents = currentState.text.split(',');
+        const index = _.findIndex(currentState.scores, { 'name': scoreComponents[0] });
+        let Score = {};
+        if (index >= 0){
+            // The name is already in the array
+            Score = currentState.scores[index];
+            Score.score += Number(scoreComponents[1]);
+        }
+        else {
+            Score = {
+                id: Date.now(),
+                name: scoreComponents[0],
+                score: Number(scoreComponents[1]),
+            };
+        }
         this.setState(prevState => ({
-            scores: _.orderBy(prevState.scores.concat(Score), ['score', 'name'],['desc', 'asc']),
+            // Add the Score, remove duplicates, order by score and name
+            // @todo: it would be more efficient to just update the existing object not concat.
+            scores: _.orderBy(_.uniq(prevState.scores.concat(Score)), ['score', 'name'],['desc', 'asc']),
             text:''
         }));
     }
