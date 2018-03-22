@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import './App.css';
 
 class App extends Component {
@@ -32,9 +33,8 @@ class App extends Component {
             name: scoreComponents[0],
             score: Number(scoreComponents[1]),
         };
-
         this.setState(prevState => ({
-            scores: prevState.scores.concat(Score),
+            scores: _.orderBy(prevState.scores.concat(Score), ['score', 'name'],['desc', 'asc']),
             text:''
         }));
     }
