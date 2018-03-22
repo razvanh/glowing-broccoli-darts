@@ -59,11 +59,11 @@ class App extends Component {
     }
   render() {
     return (
-        <div>
+        <div id="wrapper">
             <Header />
-            <form onSubmit={this.handleSubmit}>
+            <form id="new-score-form" onSubmit={this.handleSubmit}>
                 <label htmlFor="new-score">
-                    Enter the name and score 'name, score'
+                    Enter the name and score using the <i>'name, score'</i> format:
                 </label>
                 <input
                     id="new-score"
@@ -76,7 +76,7 @@ class App extends Component {
             </form>
             <ScoreList scores={this.state.scores}/>
             <form onSubmit={this.clearRankings}>
-                <button>
+                <button className="button--cancel">
                     Clear Rankings
                 </button>
             </form>
@@ -101,7 +101,17 @@ class ScoreList extends React.Component {
         return (
             <ul>
                 {this.props.scores.map((score,i,arr) => (
-                    <li key={score.id}>{(arr[i-1] === undefined || score.score === arr[i-1].score) ? rank : rank = i +1 }. {score.name}, {score.score} pts</li>
+                    <li key={score.id} className="leaderboard">
+                        <span className="leaderboard__rank">
+                            {(arr[i-1] === undefined || score.score === arr[i-1].score) ? rank : rank = i +1 }
+                        </span>
+                        <span className="leaderboard__name">
+                            {score.name}
+                        </span>
+                        <span className="leaderboard__score">
+                            {score.score} pts
+                        </span>
+                    </li>
                 ))}
             </ul>
         );

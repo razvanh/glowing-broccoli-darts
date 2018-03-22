@@ -3,11 +3,77 @@
 body {
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
-    background-color: #331EA9;
+    background-color:#00074B;
     color: #ffffff;
+    font-size:18px;
+    line-height:1.3;
+}
+
+header {
+    margin-bottom: 2rem;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-weight: 900;
 }
 
+#wrapper {
+    width:98%;
+    margin:1rem auto 0;
+    max-width:40rem;
+}
+
+button,
+.button{
+    background-color:#ED131B;
+    color:#fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border:4px #dd0000 solid;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.button--cancel {
+    background-color: #FFB622;
+    color:#000000;
+    border-color: #f7a500;
+}
+
+#new-score-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+label {
+    display:block;
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
+
+input {
+    border:none;
+    font-size: 1rem;
+    padding: 0 .5rem;
+}
+
+ul {
+    list-style-type: none;
+    margin:2rem 0;
+    padding:0;
+}
+.leaderboard {
+    display: grid;
+    grid-template-columns: 2fr 14fr 4fr;
+    margin:1rem 0;
+    padding:1rem;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color:#fff;
+    color:#00074B;
+}
+
+.leaderboard__rank {
+    font-weight:900;
+}
