@@ -89,12 +89,13 @@ class App extends Component {
 
 class ScoreList extends React.Component {
     render() {
+        let rank = 1;
         return (
-            <ol>
-                {this.props.scores.map(score => (
-                    <li key={score.id}>{score.name}, {score.score}</li>
+            <ul>
+                {this.props.scores.map((score,i,arr) => (
+                    <li key={score.id}>{(arr[i-1] === undefined || score.score === arr[i-1].score) ? rank : rank = i +1 }. {score.name}, {score.score} pts</li>
                 ))}
-            </ol>
+            </ul>
         );
     }
 }
