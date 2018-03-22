@@ -16,6 +16,18 @@ class App extends Component {
         this.clearRankings = this.clearRankings.bind(this);
     }
 
+    componentDidMount(){
+        if (localStorage.getItem("glowing-broccoli-darts") === null) {
+            localStorage.setItem("glowing-broccoli-darts", JSON.stringify([]));
+        }
+
+        let scores =  JSON.parse(localStorage.getItem("glowing-broccoli-darts"));
+        this.setState({
+            scores:scores,
+        });//setState
+    }//componentDidMount
+
+
     handleChange(e){
         this.setState({text: e.target.value});
     }
@@ -43,16 +55,19 @@ class App extends Component {
                 score: Number(scoreComponents[1]),
             };
         }
-        this.setState(prevState => ({
+        let newScores = _.orderBy(_.uniq(currentState.scores.concat(Score)), ['score', 'name'],['desc', 'asc']);
+        localStorage.setItem("glowing-broccoli-darts", JSON.stringify(newScores));
+        this.setState(() => ({
             // Add the Score, remove duplicates, order by score and name
             // @todo: it would be more efficient to just update the existing object not concat.
-            scores: _.orderBy(_.uniq(prevState.scores.concat(Score)), ['score', 'name'],['desc', 'asc']),
+            scores: newScores,
             text:''
         }));
     }
 
     clearRankings(e){
         e.preventDefault();
+        localStorage.setItem("glowing-broccoli-darts", JSON.stringify([]));
         this.setState({
             scores:[]
         });
