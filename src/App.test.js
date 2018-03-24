@@ -41,7 +41,7 @@ describe('<App />', () => {
     });
 
 
-    it('should display leaderboard correctly', () => {
+    it('should calculate leaderboard correctly', () => {
         const fakeEvent = { preventDefault: () => {}
         };
         const wrapper = mount(<App />);
@@ -74,7 +74,23 @@ describe('<App />', () => {
 
         expect(wrapper.state('scores').length).toBe(6);
 
-        expect(wrapper.find('ul').html()).toBe('<ul><li class="leaderboard"><span class="leaderboard__rank">1</span><span class="leaderboard__name">Jollyby</span><span class="leaderboard__score">42 pts</span></li><li class="leaderboard"><span class="leaderboard__rank">2</span><span class="leaderboard__name">Janet Pluchinsky</span><span class="leaderboard__score">30 pts</span></li><li class="leaderboard"><span class="leaderboard__rank">3</span><span class="leaderboard__name">Alice Quinn</span><span class="leaderboard__score">27 pts</span></li><li class="leaderboard"><span class="leaderboard__rank">3</span><span class="leaderboard__name">Julia Wicker</span><span class="leaderboard__score">27 pts</span></li><li class="leaderboard"><span class="leaderboard__rank">5</span><span class="leaderboard__name">Eliot Waugh</span><span class="leaderboard__score">1 pts</span></li><li class="leaderboard"><span class="leaderboard__rank">6</span><span class="leaderboard__name">Quentin Coldwater</span><span class="leaderboard__score">0 pts</span></li></ul>');
+        expect(wrapper.state('scores')[0].name).toBe('Jollyby');
+        expect(wrapper.state('scores')[0].score).toBe(42);
+
+        expect(wrapper.state('scores')[1].name).toBe('Janet Pluchinsky');
+        expect(wrapper.state('scores')[1].score).toBe(30);
+
+        expect(wrapper.state('scores')[2].name).toBe('Alice Quinn');
+        expect(wrapper.state('scores')[2].score).toBe(27);
+
+        expect(wrapper.state('scores')[3].name).toBe('Julia Wicker');
+        expect(wrapper.state('scores')[3].score).toBe(27);
+
+        expect(wrapper.state('scores')[4].name).toBe('Eliot Waugh');
+        expect(wrapper.state('scores')[4].score).toBe(1);
+
+        expect(wrapper.state('scores')[5].name).toBe('Quentin Coldwater');
+        expect(wrapper.state('scores')[5].score).toBe(0);
         });
 
 });
