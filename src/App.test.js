@@ -17,10 +17,6 @@ const scores = [
     }
 ];
 
-const sample_scores = [
-
-];
-
 describe('<App />', () => {
 
     it('renders without crashing', () => {
@@ -94,4 +90,5 @@ describe('<App />', () => {
         });
 
 });
+
 
